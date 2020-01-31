@@ -1,10 +1,11 @@
 package pl.dobberstudio.engine;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class GameContainer implements Runnable{
-    public static final int WIDTH = 1366;
-    public static final int HEIGHT = 768;
+    public static final int WIDTH = 1216;
+    public static final int HEIGHT = 684;
     public static final float SCALE = 1f;
     public static final String TITLE = "Global Game Jam 2020";
 
@@ -63,6 +64,7 @@ public class GameContainer implements Runnable{
                     System.out.println("AAA");
                 }
                  */
+
                 game.update(this, UPDATE_CUP);
 
                 if(frameTime >= 1.0) {
