@@ -1,11 +1,17 @@
 package pl.dobberstudio.game;
 
+import pl.dobberstudio.game.eq.Equipment;
+import pl.dobberstudio.game.eq.Flowers;
+import pl.dobberstudio.game.eq.Food;
+
 public class Character {
     public static int MAX_LOOK = 100;
     public static int MAX_BODY = 100;
     public static int MAX_CHARISMA = 100;
     public static int MAX_HUNGER = 100;
     public static int MAX_TIREDNESS = 100;
+
+    private Equipment equipment;
 
     private int look;
     private int body;
@@ -22,6 +28,7 @@ public class Character {
         hunger = MAX_HUNGER;
         tiredness = MAX_TIREDNESS;
         money = 50;
+        equipment = new Equipment();
     }
 
     public void trainOnGym() {
@@ -69,6 +76,14 @@ public class Character {
         if(this.charisma > MAX_CHARISMA) {
             this.charisma = MAX_CHARISMA;
         }
+    }
+
+    public void addFood(Food food, int amount) {
+        equipment.addFood(food, amount);
+    }
+
+    public void addFlowers(Flowers flower, int amount) {
+        equipment.addFlowers(flower, amount);
     }
 
     public void eat(int hunger) {
@@ -122,12 +137,7 @@ public class Character {
     @Override
     public String toString() {
         return "Character{" +
-                "look=" + look +
-                ", body=" + body +
-                ", charisma=" + charisma +
-                ", hunger=" + hunger +
-                ", tiredness=" + tiredness +
-                ", money=" + money +
+                "equipment=" + equipment +
                 '}';
     }
 }
