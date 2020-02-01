@@ -58,13 +58,6 @@ public class GameContainer implements Runnable{
                 unprocessedTime -= UPDATE_CUP;
                 render = true;
 
-
-                /*
-                if(input.isKey(KeyEvent.VK_A)) {
-                    System.out.println("AAA");
-                }
-                 */
-
                 game.update(this, UPDATE_CUP);
                 input.update();
 

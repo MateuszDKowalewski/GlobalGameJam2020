@@ -22,7 +22,7 @@ public abstract class Button extends Rectangle2D.Double {
     }
 
     public void isClicked(GameContainer gc) {
-        if(contains(gc.getInput().getMouseX(), gc.getInput().getMouseY()) && (gc.getInput().isButton(MouseEvent.BUTTON1))) { //todo: isbuttondown repair
+        if(contains(gc.getInput().getMouseX(), gc.getInput().getMouseY()) && (gc.getInput().isButtonDown(MouseEvent.BUTTON1))) { //todo: isbuttondown repair
             onClick.run();
         }
     }
