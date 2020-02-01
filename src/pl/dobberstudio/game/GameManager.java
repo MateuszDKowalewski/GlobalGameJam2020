@@ -41,14 +41,15 @@ public class GameManager extends AbstractGame {
         workRopuch = new WorkRopuch(this, "kasa.png", character);
         city = new City(this, "map.png");
         gym = new Gym(this, "res/gym.png", character);
-        toad = new Toad(this, "ropuch.png");
+        toad = new Toad(this, "ropuch.png", character);
         characterPanel = new CharacterPanel(this, "characterPanel.png", character);
         house = new House(this, "house_inside.png", character);
-        florist = new Florist(this, "florist_inside.png");
+        florist = new Florist(this, "florist_inside.png", character);
         jeweller = new Jeweller(this, "jeweller_inside.png");
         clother = new Clother(this, "clother_inside.png");
         waifuPanel = new WaifuPanel(this, "waifuPanel.png");
         timer = new Timer(this, "timer_background.png");
+        florist = new Florist(this, "florist_inside.png", character);
     }
 
     @Override
