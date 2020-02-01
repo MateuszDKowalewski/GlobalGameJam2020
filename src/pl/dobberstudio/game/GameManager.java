@@ -3,9 +3,13 @@ package pl.dobberstudio.game;
 import pl.dobberstudio.engine.AbstractGame;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+
+import pl.dobberstudio.engine.gfx.Image;
 import pl.dobberstudio.game.locations.*;
 
+import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
+
 
 public class GameManager extends AbstractGame {
 
@@ -19,6 +23,8 @@ public class GameManager extends AbstractGame {
     private Toad toad;
     private CharacterPanel characterPanel;
     private House house;
+    private WaifuPanel waifuPanel;
+    private Florist florist;
   
     public GameManager() {
         character = new Character();
@@ -30,6 +36,7 @@ public class GameManager extends AbstractGame {
         toad = new Toad(this, "ropuch.png");
         characterPanel = new CharacterPanel(this, "characterPanel.png", character);
         house = new House(this, "house_inside.png", character);
+        florist = new Florist(this, "florist_inside.png");
     }
 
     @Override
@@ -61,6 +68,7 @@ public class GameManager extends AbstractGame {
     public void setLocation(CurrentLocation location) {
         this.current = location;
     }
+
 
     public void setLocationByKey(GameContainer gc) {
         if(gc.getInput().isKeyDown(KeyEvent.VK_Q)) setLocation(CurrentLocation.WORK_ROPUCH);
