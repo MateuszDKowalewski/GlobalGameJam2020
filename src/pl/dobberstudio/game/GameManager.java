@@ -4,10 +4,8 @@ import pl.dobberstudio.engine.AbstractGame;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.engine.gfx.Image;
-import pl.dobberstudio.game.locations.CharacterPanel;
-import pl.dobberstudio.game.locations.Toad;
-import pl.dobberstudio.game.locations.WorkRopuch;
-import pl.dobberstudio.game.locations.City;
+import pl.dobberstudio.game.locations.*;
+
 import java.awt.event.MouseEvent;
 
 public class GameManager extends AbstractGame {
@@ -17,6 +15,7 @@ public class GameManager extends AbstractGame {
     private Toad toad;
     private CharacterPanel characterPanel;
     private WaifuPanel waifuPanel;
+    private Florist florist;
   
     public GameManager() {
       workRopuch = new WorkRopuch(this, "kasa.png");
@@ -24,6 +23,7 @@ public class GameManager extends AbstractGame {
       toad = new Toad(this, "ropuch.png");
       characterPanel = new CharacterPanel(this, "characterPanel.png");
       waifuPanel = new WaifuPanel(this, "waifuPanel.png");
+      florist = new Florist(this, "florist_inside.png");
     }
 
     @Override
@@ -32,7 +32,8 @@ public class GameManager extends AbstractGame {
         //city.update(gc, deltaTime);
         //toad.update(gc, deltaTime);
         //characterPanel.update(gc, deltaTime);
-        waifuPanel.update(gc, deltaTime);
+        //waifuPanel.update(gc, deltaTime);
+        florist.update(gc, deltaTime);
     }
 
     @Override
@@ -42,7 +43,8 @@ public class GameManager extends AbstractGame {
         //city.render(gc, renderer);
         //toad.render(gc, renderer);
         //characterPanel.render(gc, renderer);
-        waifuPanel.render(gc, renderer);
+        //waifuPanel.render(gc, renderer);
+        florist.render(gc, renderer);
     }
 
     public static void main(String[] args) {
