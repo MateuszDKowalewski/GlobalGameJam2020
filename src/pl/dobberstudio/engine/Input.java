@@ -5,11 +5,11 @@ import java.awt.event.*;
 public class Input implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
     GameContainer gc;
 
-    private final int NUM_KEYS = 256;
+    private final int NUM_KEYS = 512;
     private boolean[] keys = new boolean[NUM_KEYS];
     private boolean[] keysLast = new boolean[NUM_KEYS];
 
-    private final int NUM_BUTTON = 5;
+    private final int NUM_BUTTON = 32;
     private boolean[] buttons = new boolean[NUM_BUTTON];
     private boolean[] buttonsLast = new boolean[NUM_BUTTON];
 
