@@ -21,7 +21,7 @@ public class Renderer {
     }
 
     public void setPixel(int x, int y, int value) {
-        if(x < 0 || x >= pW || y < 0 || y >= pH) { //add invisible color
+        if(x < 0 || x >= pW || y < 0 || y >= pH || value == -15584170) {
             return;
         }
 
