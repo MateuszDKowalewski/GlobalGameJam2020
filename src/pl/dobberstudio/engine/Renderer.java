@@ -21,7 +21,7 @@ public class Renderer {
     }
 
     public void setPixel(int x, int y, int value) {
-        if(x < 0 || x >= pW || y < 0 || y >= pH || value == -15584170) {
+        if(x < 0 || x >= pW || y < 0 || y >= pH || value == -15584170 || value == 0) {
             return;
         }
 
@@ -31,7 +31,16 @@ public class Renderer {
     public void drawImage(Image img, int offX, int offY) {
         for(int y = 0; y < img.getHeight(); y++) {
             for(int x = 0; x < img.getWidth(); x++) {
+
                 setPixel(x + offX, y + offY, img.getPixels()[x + y * img.getWidth()]);
+            }
+        }
+    }
+
+    public void drawRect(int offX, int offY, int w, int h, int color) {
+        for(int y = 0; y < h; y++) {
+            for(int x = 0; x < w; x++) {
+                setPixel(x + offX, y + offY, color);
             }
         }
     }

@@ -13,7 +13,7 @@ public class Window {
     private Graphics g;
 
     public Window(GameContainer gc) {
-        image = new BufferedImage(GameContainer.WIDTH, GameContainer.HEIGHT, BufferedImage.TYPE_INT_RGB); //TODO rgba
+        image = new BufferedImage(GameContainer.WIDTH, GameContainer.HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
         canvas = new Canvas();
         Dimension s = new Dimension((int)(GameContainer.WIDTH * GameContainer.SCALE), (int)(GameContainer.HEIGHT * GameContainer.SCALE));

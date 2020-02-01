@@ -3,6 +3,7 @@ package pl.dobberstudio.game.locations;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.engine.gfx.Image;
+import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.GameManager;
 
 import java.awt.event.KeyEvent;
@@ -11,17 +12,20 @@ import java.awt.event.MouseEvent;
 public class Gym extends Location {
     private static final double DEFAULT_UP_TIME = 0.5;
 
+    Character character;
+
     private Image boy;
     private int boyX;
     private int boyY;
     private double upTime;
 
-    public Gym(GameManager gm, String path) {
+    public Gym(GameManager gm, String path, Character character) {
         super(gm, path);
         boy = new Image("res/pullUpBoy.png");
         boyX = 560;
         boyY = 300;
         upTime = DEFAULT_UP_TIME;
+        this.character = character;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Gym extends Location {
     }
 
     private void madePullUp() {
-
+        character.trainOnGym();
     }
 
     @Override
