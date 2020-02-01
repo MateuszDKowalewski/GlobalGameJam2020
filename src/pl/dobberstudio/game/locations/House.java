@@ -2,50 +2,58 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+import pl.dobberstudio.game.Character;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 
 public class House extends Location
 {
-    private MapLocation[] locations;
-    public House(GameManager gm, String path)
+    private Character character;
+
+    private MapLocation[] furniture;
+
+
+    public House(GameManager gm, String path, Character character)
     {
         super(gm, path);
+        this.character = character;
+
         int c = 38;
-        locations = new MapLocation[5];
-        locations[0] = new MapLocation(gm,"house_doors.png", c * 7, c * 1);
-        locations[0].setOnClick(new Runnable() {
+        furniture = new MapLocation[5];
+        furniture[0] = new MapLocation(gm,"house_doors.png", c * 7, c * 1);
+        furniture[0].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                System.out.println("doors");
+                gm.setLocation(CurrentLocation.CITY);
             }
         });
-        locations[1] = new MapLocation(gm,"house_kitchen.png", c * 12, c * 5);
-        locations[1].setOnClick(new Runnable() {
+        furniture[1] = new MapLocation(gm,"house_kitchen.png", c * 12, c * 5);
+        furniture[1].setOnClick(new Runnable() {
             @Override
             public void run()
             {
                 System.out.println("kitchen");
             }
         });
-        locations[2] = new MapLocation(gm,"house_fridge.png", c * 16, c * 2);
-        locations[2].setOnClick(new Runnable() {
+        furniture[2] = new MapLocation(gm,"house_fridge.png", c * 16, c * 2);
+        furniture[2].setOnClick(new Runnable() {
             @Override
             public void run()
             {
                 System.out.println("fridge");
             }
         });
-        locations[3] = new MapLocation(gm,"house_bed.png", c * 21, c * 6);
-        locations[3].setOnClick(new Runnable() {
+        furniture[3] = new MapLocation(gm,"house_bed.png", c * 21, c * 6);
+        furniture[3].setOnClick(new Runnable() {
             @Override
             public void run()
             {
                 System.out.println("bed");
             }
         });
-        locations[4] = new MapLocation(gm,"house_table.png", c * 3, c * 10);
-        locations[4].setOnClick(new Runnable() {
+        furniture[4] = new MapLocation(gm,"house_table.png", c * 3, c * 10);
+        furniture[4].setOnClick(new Runnable() {
             @Override
             public void run()
             {
@@ -57,7 +65,7 @@ public class House extends Location
     @Override
     public void update(GameContainer gc, double deltaTime)
     {
-        for(MapLocation m : locations)
+        for(MapLocation m : furniture)
         {
             m.isClicked(gc);
         }
@@ -66,7 +74,7 @@ public class House extends Location
     @Override
     public void render(GameContainer gc, Renderer renderer) {
         super.render(gc, renderer);
-        for(MapLocation m : locations)
+        for(MapLocation m : furniture)
         {
             renderer.drawImage(m.getIcon(), (int)m.x, (int)m.y);
         }

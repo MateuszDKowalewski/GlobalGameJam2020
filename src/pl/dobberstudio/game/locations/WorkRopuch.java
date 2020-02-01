@@ -2,6 +2,7 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.GameManager;
 import pl.dobberstudio.game.locations.ropuch.Assortment;
 import pl.dobberstudio.game.locations.ropuch.Basket;
@@ -17,6 +18,7 @@ public class WorkRopuch extends Location {
 
     Assortment assortment;
     Scanner scanner;
+    Character character;
 
     private List<Product> products = new ArrayList<>();
     private Basket basket;
@@ -26,7 +28,7 @@ public class WorkRopuch extends Location {
     int grabbedOffY;
 
 
-    public WorkRopuch(GameManager gm, String path) {
+    public WorkRopuch(GameManager gm, String path, Character character) {
         super(gm, path);
         assortment = new Assortment();
         grabbedProduct = null;
@@ -35,6 +37,8 @@ public class WorkRopuch extends Location {
         basket = new Basket(this);
         basket.getProducts().forEach(p -> products.add(p));
         products.sort(Comparator.comparingDouble(Product::getX));
+
+        this.character = character;
     }
 
 
@@ -94,7 +98,7 @@ public class WorkRopuch extends Location {
     }
 
     private void madeBasket() {
-        //TODO: add coins to player
+        character.workInRopuch(products.size());
         products = null;
         basket = null;
         grabbedProduct = null;
