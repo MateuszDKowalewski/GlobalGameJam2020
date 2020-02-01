@@ -49,6 +49,7 @@ public class GameManager extends AbstractGame {
             case CITY: city.update(gc, deltaTime); break;
             case CHARACTER_PANEL: characterPanel.update(gc, deltaTime); break;
             case HOUSE: house.update(gc, deltaTime); break;
+            case FLORIST: florist.update(gc, deltaTime); break;
         }
     }
 
@@ -60,9 +61,9 @@ public class GameManager extends AbstractGame {
             case TOAD: toad.render(gc, renderer); break;
             case CITY: city.render(gc, renderer); break;
             case CHARACTER_PANEL: characterPanel.render(gc, renderer); break;
-            case HOUSE:house.render(gc, renderer); break;
+            case HOUSE: house.render(gc, renderer); break;
+            case FLORIST: florist.render(gc, renderer); break;
         }
-        renderer.drawText("WAIFUUUU\nKAWAII", 100, 100, 0xFFFFFFFF);
     }
 
     public void setLocation(CurrentLocation location) {
@@ -77,6 +78,7 @@ public class GameManager extends AbstractGame {
         if(gc.getInput().isKeyDown(KeyEvent.VK_R)) setLocation(CurrentLocation.CITY);
         if(gc.getInput().isKeyDown(KeyEvent.VK_T)) setLocation(CurrentLocation.CHARACTER_PANEL);
         if(gc.getInput().isKeyDown(KeyEvent.VK_Y)) setLocation(CurrentLocation.HOUSE);
+        if(gc.getInput().isKeyDown(KeyEvent.VK_U)) setLocation(CurrentLocation.FLORIST);
     }
 
     public static void main(String[] args) {

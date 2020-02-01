@@ -15,7 +15,7 @@ public class Window {
     private Graphics g;
 
     public Window(GameContainer gc) {
-        image = new BufferedImage(GameContainer.WIDTH, GameContainer.HEIGHT, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(GameContainer.WIDTH, GameContainer.HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
         canvas = new Canvas();
         Dimension s = new Dimension((int)(GameContainer.WIDTH * GameContainer.SCALE), (int)(GameContainer.HEIGHT * GameContainer.SCALE));
@@ -40,7 +40,6 @@ public class Window {
     public void update() {
         g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
         bs.show();
-        g.dispose();
     }
 
     public JFrame getFrame() {

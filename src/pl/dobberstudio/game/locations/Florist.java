@@ -10,7 +10,7 @@ public class Florist extends Location
     ToadProduct[] flowers;
     public Florist(GameManager gm, String path)
     {
-        super(gm, path);
+        super(gm, "florist_inside.png");
         flowers = new ToadProduct[5];
         flowers[0] = new ToadProduct(gm, "florist/mixed.png", 90, 20, 1);
         flowers[0].setOnClick(new Runnable() {

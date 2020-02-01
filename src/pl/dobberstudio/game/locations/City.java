@@ -54,7 +54,7 @@ public class City extends Location
         locations[5].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("florist");
+                gm.setLocation(CurrentLocation.FLORIST);
             }
         });
         locations[6] = new MapLocation(gm, "park.png", c * 26, c * 15);
