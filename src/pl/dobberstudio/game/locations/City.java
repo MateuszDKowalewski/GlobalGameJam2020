@@ -40,7 +40,7 @@ public class City extends Location
         locations[3].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("jeweller");
+                gm.setLocation(CurrentLocation.JEWELLER);
             }
         });
         locations[4] = new MapLocation(gm, "restaurant.png", c * 26, c * 4);

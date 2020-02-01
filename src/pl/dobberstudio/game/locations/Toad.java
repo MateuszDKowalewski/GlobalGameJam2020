@@ -2,16 +2,26 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 
 public class Toad extends Location
 {
     ToadProduct products[];
+    MapLocation exit;
     public Toad(GameManager gm, String path)
     {
         super(gm, path);
+        exit = new MapLocation(gm, "exit.png", 1027, 19);
+        exit.setOnClick(new Runnable() {
+            @Override
+            public void run()
+            {
+                gm.setLocation(CurrentLocation.CITY);
+            }
+        });
         products = new ToadProduct[15];
-        products[0] = new ToadProduct(gm,"ropuch/bread.png", 96, 9, 1);
+        products[0] = new ToadProduct(gm,"ropuch/bread.png", 176, 9, 1);
         products[0].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -19,7 +29,7 @@ public class Toad extends Location
                 System.out.println("bread");
             }
         });
-        products[1] = new ToadProduct(gm,"ropuch/cheese.png", 482, 9, 1);
+        products[1] = new ToadProduct(gm,"ropuch/cheese.png", 417, 9, 1);
         products[1].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -27,7 +37,7 @@ public class Toad extends Location
                 System.out.println("cheese");
             }
         });
-        products[2] = new ToadProduct(gm,"ropuch/chips.png", 868, 9, 1);
+        products[2] = new ToadProduct(gm,"ropuch/chips.png", 768, 9, 1);
         products[2].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -35,7 +45,7 @@ public class Toad extends Location
                 System.out.println("chips");
             }
         });
-        products[3] = new ToadProduct(gm,"ropuch/chocolate.png", 46, 178, 1);
+        products[3] = new ToadProduct(gm,"ropuch/chocolate.png", 1000, 494, 1);
         products[3].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -67,7 +77,7 @@ public class Toad extends Location
                 System.out.println("tomatoes");
             }
         });
-        products[7] = new ToadProduct(gm,"ropuch/wine.png", 92, 336, 1);
+        products[7] = new ToadProduct(gm,"ropuch/wine.png", 132, 336, 1);
         products[7].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -140,6 +150,7 @@ public class Toad extends Location
         {
             m.isClicked(gc);
         }
+        exit.isClicked(gc);
     }
 
     @Override
@@ -150,5 +161,6 @@ public class Toad extends Location
         {
             renderer.drawImage(m.getIcon(), (int)m.x, (int)m.y);
         }
+        renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
     }
 }

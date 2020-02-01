@@ -6,60 +6,60 @@ import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 import pl.dobberstudio.game.locations.city.MapLocation;
 
-public class Florist extends Location
+public class Jeweller extends Location
 {
-    ToadProduct[] flowers;
+    ToadProduct[] jewelery;
     MapLocation exit;
-    public Florist(GameManager gm, String path)
+    public Jeweller(GameManager gm, String path) 
     {
         super(gm, "florist_inside.png");
         exit = new MapLocation(gm, "exit.png", 1027, 19);
         exit.setOnClick(new Runnable() {
+        @Override
+        public void run()
+        {
+            gm.setLocation(CurrentLocation.CITY);
+        }
+    });
+        jewelery = new ToadProduct[5];
+        jewelery[0] = new ToadProduct(gm, "jeweller/diamond_ring.png", 250, 20, 1);
+        jewelery[0].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                gm.setLocation(CurrentLocation.CITY);
+                System.out.println("diamond");
             }
         });
-        flowers = new ToadProduct[5];
-        flowers[0] = new ToadProduct(gm, "florist/mixed.png", 290, 20, 1);
-        flowers[0].setOnClick(new Runnable() {
+        jewelery[1] = new ToadProduct(gm, "jeweller/gold_ring.png", 670, 20, 1);
+        jewelery[1].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                System.out.println("mixed");
+                System.out.println("gold");
             }
         });
-        flowers[1] = new ToadProduct(gm, "florist/roses.png", 670, 20, 1);
-        flowers[1].setOnClick(new Runnable() {
+        jewelery[2] = new ToadProduct(gm, "jeweller/earrings.png", 90, 344, 1);
+        jewelery[2].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                System.out.println("roses");
+                System.out.println("earrings");
             }
         });
-        flowers[2] = new ToadProduct(gm, "florist/tulips.png", 90, 344, 1);
-        flowers[2].setOnClick(new Runnable() {
+        jewelery[3] = new ToadProduct(gm, "jeweller/silver_ring.png", 470, 344, 1);
+        jewelery[3].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                System.out.println("tulips");
+                System.out.println("silver");
             }
         });
-        flowers[3] = new ToadProduct(gm, "florist/dandelions.png", 470, 344, 1);
-        flowers[3].setOnClick(new Runnable() {
+        jewelery[4] = new ToadProduct(gm, "jeweller/tymbark.png", 892, 344, 1);
+        jewelery[4].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                System.out.println("dandelions");
-            }
-        });
-        flowers[4] = new ToadProduct(gm, "florist/chrisantema.png", 892, 344, 1);
-        flowers[4].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                System.out.println("chrisantema");
+                System.out.println("tymbark");
             }
         });
     }
@@ -67,7 +67,7 @@ public class Florist extends Location
     @Override
     public void update(GameContainer gc, double deltaTime)
     {
-        for(ToadProduct m : flowers)
+        for(ToadProduct m : jewelery)
         {
             m.isClicked(gc);
         }
@@ -77,7 +77,7 @@ public class Florist extends Location
     public void render(GameContainer gc, Renderer renderer)
     {
         super.render(gc, renderer);
-        for(ToadProduct m : flowers)
+        for(ToadProduct m : jewelery)
         {
             renderer.drawImage(m.getIcon(), (int)m.x, (int)m.y);
         }
