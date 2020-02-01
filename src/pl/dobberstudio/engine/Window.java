@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Window {
     private JFrame frame;
@@ -13,7 +15,7 @@ public class Window {
     private Graphics g;
 
     public Window(GameContainer gc) {
-        image = new BufferedImage(GameContainer.WIDTH, GameContainer.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        image = new BufferedImage(GameContainer.WIDTH, GameContainer.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         canvas = new Canvas();
         Dimension s = new Dimension((int)(GameContainer.WIDTH * GameContainer.SCALE), (int)(GameContainer.HEIGHT * GameContainer.SCALE));
@@ -38,6 +40,7 @@ public class Window {
     public void update() {
         g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
         bs.show();
+        g.dispose();
     }
 
     public JFrame getFrame() {
@@ -58,5 +61,19 @@ public class Window {
 
     public Graphics getG() {
         return g;
+    }
+
+    public void print(String s, int x, int y) {
+        try {
+            Font f = Font.createFont(Font.TRUETYPE_FONT, new File("res/comici.ttf")).deriveFont(Font.PLAIN, 40);
+            System.out.println("str");
+            g.setColor(Color.WHITE);
+            g.setFont(f);
+            g.drawString("QWERTYU", 10, 10);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
