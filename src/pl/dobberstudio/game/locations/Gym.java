@@ -4,6 +4,7 @@ import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.engine.gfx.Image;
 import pl.dobberstudio.game.Character;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 
 import java.awt.event.KeyEvent;
@@ -13,6 +14,7 @@ public class Gym extends Location {
     private static final double DEFAULT_UP_TIME = 0.5;
 
     Character character;
+    MapLocation exit;
 
     private Image boy;
     private int boyX;
@@ -21,6 +23,14 @@ public class Gym extends Location {
 
     public Gym(GameManager gm, String path, Character character) {
         super(gm, path);
+        exit = new MapLocation(gm, "exit.png", 19, 608);
+        exit.setOnClick(new Runnable() {
+            @Override
+            public void run()
+            {
+                gm.setLocation(CurrentLocation.CITY);
+            }
+        });
         boy = new Image("res/pullUpBoy.png");
         boyX = 560;
         boyY = 300;
@@ -49,6 +59,7 @@ public class Gym extends Location {
             madePullUp();
             boyY = 300;
         }
+        exit.isClicked(gc);
     }
 
     private void madePullUp() {
@@ -59,5 +70,6 @@ public class Gym extends Location {
     public void render(GameContainer gc, Renderer renderer) {
         super.render(gc, renderer);
         renderer.drawImage(boy, boyX, boyY);
+        renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
     }
 }

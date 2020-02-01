@@ -3,11 +3,13 @@ package pl.dobberstudio.game.locations;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.game.Character;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 
 public class CharacterPanel extends Location
 {
     Character character;
+    private MapLocation exit;
 
     private static final int BAR_X_START = 400;
     private static final int BAR_X_END = 1170;
@@ -19,13 +21,21 @@ public class CharacterPanel extends Location
 
     public CharacterPanel(GameManager gm, String path, Character character) {
         super(gm, path);
+        exit = new MapLocation(gm, "exit.png", 1027, 19);
+        exit.setOnClick(new Runnable() {
+            @Override
+            public void run()
+            {
+                gm.setLocation(CurrentLocation.CITY);
+            }
+        });
         this.character = character;
     }
 
     @Override
     public void update(GameContainer gc, double deltaTime)
     {
-
+        exit.isClicked(gc);
     }
 
     @Override
@@ -46,5 +56,7 @@ public class CharacterPanel extends Location
         renderer.drawRect(BAR_X_START, LOOK_BAR_Y, width, BAR_HEIGHT, 0xFF00FF00);
         width = (int)((BAR_X_END - BAR_X_START) * ((double)character.getBody() / Character.MAX_BODY));
         renderer.drawRect(BAR_X_START, BODY_BAR_Y, width, BAR_HEIGHT, 0xFF00FF00);
+
+        renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
     }
 }

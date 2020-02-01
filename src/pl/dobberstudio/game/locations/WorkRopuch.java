@@ -3,6 +3,7 @@ package pl.dobberstudio.game.locations;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.game.Character;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 import pl.dobberstudio.game.locations.ropuch.Assortment;
 import pl.dobberstudio.game.locations.ropuch.Basket;
@@ -19,6 +20,7 @@ public class WorkRopuch extends Location {
     Assortment assortment;
     Scanner scanner;
     Character character;
+    MapLocation exit;
 
     private List<Product> products = new ArrayList<>();
     private Basket basket;
@@ -30,6 +32,14 @@ public class WorkRopuch extends Location {
 
     public WorkRopuch(GameManager gm, String path, Character character) {
         super(gm, path);
+        exit = new MapLocation(gm, "exit.png", 1027, 608);
+        exit.setOnClick(new Runnable() {
+            @Override
+            public void run()
+            {
+                gm.setLocation(CurrentLocation.CITY);
+            }
+        });
         assortment = new Assortment();
         grabbedProduct = null;
         scanner = new Scanner("scaner.png", 622, 51);
@@ -82,6 +92,7 @@ public class WorkRopuch extends Location {
         if((basket != null) && (basket.getAmount() > 0) && (basket.getProducts().get(0).x < scanner.x - basket.getProducts().get(0).width - 50)) {
             basket.run(deltaTime);
         }
+        exit.isClicked(gc);
     }
 
     @Override
@@ -91,6 +102,7 @@ public class WorkRopuch extends Location {
         if(products != null) {
             products.forEach(p -> p.render(gc, renderer));
         }
+        renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
     }
 
     public Assortment getAssortment() {

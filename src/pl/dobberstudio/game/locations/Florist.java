@@ -2,6 +2,7 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.GameManager;
 import pl.dobberstudio.game.eq.Flowers;
@@ -11,11 +12,21 @@ import pl.dobberstudio.game.locations.city.MapLocation;
 public class Florist extends Location
 {
     ToadProduct[] flowers;
+    MapLocation exit;
+
     public Florist(GameManager gm, String path, Character character)
     {
         super(gm, "florist_inside.png");
+        exit = new MapLocation(gm, "exit.png", 1027, 19);
+        exit.setOnClick(new Runnable() {
+            @Override
+            public void run()
+            {
+                gm.setLocation(CurrentLocation.CITY);
+            }
+        });
         flowers = new ToadProduct[5];
-        flowers[0] = new ToadProduct(gm, "florist/mixed.png", 90, 20, 1);
+        flowers[0] = new ToadProduct(gm, "florist/mixed.png", 290, 20, 1);
         flowers[0].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -79,6 +90,7 @@ public class Florist extends Location
         {
             m.isClicked(gc);
         }
+        exit.isClicked(gc);
     }
     @Override
     public void render(GameContainer gc, Renderer renderer)
@@ -88,5 +100,6 @@ public class Florist extends Location
         {
             renderer.drawImage(m.getIcon(), (int)m.x, (int)m.y);
         }
+        renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
     }
 }
