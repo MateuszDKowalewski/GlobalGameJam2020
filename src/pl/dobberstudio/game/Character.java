@@ -86,6 +86,10 @@ public class Character {
         equipment.addFlowers(flower, amount);
     }
 
+    public void spendMoney(int amount) {
+        money -= amount;
+    }
+
     public void eat(int hunger) {
         this.hunger += hunger;
     }

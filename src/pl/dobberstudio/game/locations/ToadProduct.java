@@ -11,4 +11,8 @@ public class ToadProduct extends Button
         super(gm, path, x, y);
         this.price = price;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
