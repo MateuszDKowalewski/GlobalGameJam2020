@@ -33,6 +33,16 @@ public class Equipment {
         return -1;
     }
 
+    public void eatFood(Food food) {
+        int i = 0;
+        for(Food f : Food.values()) {
+            if(food == f) {
+                this.food[i]--;
+            }
+            i++;
+        }
+    }
+
     public void addFood(Food food, int amount) {
         int i = 0;
         for(Food f : Food.values()) {

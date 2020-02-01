@@ -78,6 +78,18 @@ public class Character {
         }
     }
 
+    public int getFoodAmount(Food food) {
+        return equipment.getFoodAmount(food);
+    }
+
+    public void eatFood(Food food) {
+        equipment.eatFood(food);
+    }
+
+    public int getFlowerAmount(Flowers flowers) {
+        return equipment.getFlowerAmount(flowers);
+    }
+
     public void addFood(Food food, int amount) {
         equipment.addFood(food, amount);
     }

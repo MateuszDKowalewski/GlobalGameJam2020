@@ -2,13 +2,16 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.GameManager;
+import pl.dobberstudio.game.eq.Flowers;
+import pl.dobberstudio.game.eq.Food;
 import pl.dobberstudio.game.locations.city.MapLocation;
 
 public class Florist extends Location
 {
     ToadProduct[] flowers;
-    public Florist(GameManager gm, String path)
+    public Florist(GameManager gm, String path, Character character)
     {
         super(gm, "florist_inside.png");
         flowers = new ToadProduct[5];
@@ -17,7 +20,10 @@ public class Florist extends Location
             @Override
             public void run()
             {
-                System.out.println("mixed");
+                if(character.getMoney() > flowers[0].getPrice()) {
+                    character.spendMoney(flowers[0].getPrice());
+                    character.addFlowers(Flowers.MIXED, 1);
+                }
             }
         });
         flowers[1] = new ToadProduct(gm, "florist/roses.png", 670, 20, 1);
@@ -25,7 +31,10 @@ public class Florist extends Location
             @Override
             public void run()
             {
-                System.out.println("roses");
+                if(character.getMoney() > flowers[1].getPrice()) {
+                    character.spendMoney(flowers[1].getPrice());
+                    character.addFlowers(Flowers.ROSES, 1);
+                }
             }
         });
         flowers[2] = new ToadProduct(gm, "florist/tulips.png", 90, 344, 1);
@@ -33,7 +42,10 @@ public class Florist extends Location
             @Override
             public void run()
             {
-                System.out.println("tulips");
+                if(character.getMoney() > flowers[2].getPrice()) {
+                    character.spendMoney(flowers[2].getPrice());
+                    character.addFlowers(Flowers.TULIPS, 1);
+                }
             }
         });
         flowers[3] = new ToadProduct(gm, "florist/dandelions.png", 470, 344, 1);
@@ -41,7 +53,10 @@ public class Florist extends Location
             @Override
             public void run()
             {
-                System.out.println("dandelions");
+                if(character.getMoney() > flowers[3].getPrice()) {
+                    character.spendMoney(flowers[3].getPrice());
+                    character.addFlowers(Flowers.DANDELIONS, 1);
+                }
             }
         });
         flowers[4] = new ToadProduct(gm, "florist/chrisantema.png", 892, 344, 1);
@@ -49,7 +64,10 @@ public class Florist extends Location
             @Override
             public void run()
             {
-                System.out.println("chrisantema");
+                if(character.getMoney() > flowers[4].getPrice()) {
+                    character.spendMoney(flowers[4].getPrice());
+                    character.addFlowers(Flowers.CHRISANTEMA, 1);
+                }
             }
         });
     }
