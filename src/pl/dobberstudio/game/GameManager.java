@@ -16,12 +16,14 @@ public class GameManager extends AbstractGame {
     private City city;
     private Toad toad;
     private CharacterPanel characterPanel;
+    private WaifuPanel waifuPanel;
   
     public GameManager() {
       workRopuch = new WorkRopuch(this, "kasa.png");
       city = new City(this, "map.png");
       toad = new Toad(this, "ropuch.png");
       characterPanel = new CharacterPanel(this, "characterPanel.png");
+      waifuPanel = new WaifuPanel(this, "waifuPanel.png");
     }
 
     @Override
@@ -29,7 +31,8 @@ public class GameManager extends AbstractGame {
         //workRopuch.update(gc, deltaTime);
         //city.update(gc, deltaTime);
         //toad.update(gc, deltaTime);
-        characterPanel.update(gc, deltaTime);
+        //characterPanel.update(gc, deltaTime);
+        waifuPanel.update(gc, deltaTime);
     }
 
     @Override
@@ -38,7 +41,8 @@ public class GameManager extends AbstractGame {
         //workRopuch.render(gc, renderer);
         //city.render(gc, renderer);
         //toad.render(gc, renderer);
-        characterPanel.render(gc, renderer);
+        //characterPanel.render(gc, renderer);
+        waifuPanel.render(gc, renderer);
     }
 
     public static void main(String[] args) {
