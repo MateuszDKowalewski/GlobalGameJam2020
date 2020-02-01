@@ -5,25 +5,30 @@ import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.engine.gfx.Image;
 import pl.dobberstudio.game.locations.WorkRopuch;
-
+import pl.dobberstudio.game.locations.City;
 import java.awt.event.MouseEvent;
 
 public class GameManager extends AbstractGame {
 
     private WorkRopuch workRopuch;
-
+    private City city;
+  
     public GameManager() {
-        workRopuch = new WorkRopuch(this, "kasa.png");
+      workRopuch = new WorkRopuch(this, "kasa.png");
+      city = new City(this, "map.png");
     }
 
     @Override
     public void update(GameContainer gc, double deltaTime) {
-        workRopuch.update(gc, deltaTime);
+        //workRopuch.update(gc, deltaTime);
+        city.update(gc, deltaTime);
     }
 
     @Override
     public void render(GameContainer gc, Renderer renderer) {
-        workRopuch.render(gc, renderer);
+
+        //workRopuch.render(gc, renderer);
+        city.render(gc, renderer);
     }
 
     public static void main(String[] args) {

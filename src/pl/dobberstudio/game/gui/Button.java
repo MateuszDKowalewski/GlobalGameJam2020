@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 
 public abstract class Button extends Rectangle2D.Double {
+    Runnable onClick;
     GameManager gm;
     Image icon;
 
@@ -20,11 +21,9 @@ public abstract class Button extends Rectangle2D.Double {
         this.gm = gm;
     }
 
-    protected abstract void onClickAction(GameContainer gc);
-
     public void isClicked(GameContainer gc) {
-        if(contains(gc.getInput().getMouseX(), gc.getInput().getMouseY()) && (gc.getInput().isButtonDown(MouseEvent.BUTTON1))) {
-            onClickAction(gc);
+        if(contains(gc.getInput().getMouseX(), gc.getInput().getMouseY()) && (gc.getInput().isButton(MouseEvent.BUTTON1))) { //todo: isbuttondown repair
+            onClick.run();
         }
     }
 
@@ -32,7 +31,15 @@ public abstract class Button extends Rectangle2D.Double {
 
     }
 
+    public Image getIcon() {
+        return icon;
+    }
+
     public void render(GameContainer gc, Renderer renderer) {
         renderer.drawImage(icon, (int)getX(), (int)getY());
+    }
+
+    public void setOnClick(Runnable onClick) {
+        this.onClick = onClick;
     }
 }
