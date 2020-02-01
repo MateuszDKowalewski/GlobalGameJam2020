@@ -130,6 +130,10 @@ public class Character {
         return money;
     }
 
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
     public static int getMaxLook() {
         return MAX_LOOK;
     }

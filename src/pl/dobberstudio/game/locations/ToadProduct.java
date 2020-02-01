@@ -7,6 +7,7 @@ import pl.dobberstudio.game.gui.Button;
 public class ToadProduct extends Button
 {
     private Food foodKind;
+    private int value;
 
     private int price;
     public ToadProduct(GameManager gm, String path, double x, double y, int price)
@@ -25,5 +26,13 @@ public class ToadProduct extends Button
 
     public void setFoodKind(Food foodKind) {
         this.foodKind = foodKind;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

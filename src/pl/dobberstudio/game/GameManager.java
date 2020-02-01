@@ -46,7 +46,7 @@ public class GameManager extends AbstractGame {
         house = new House(this, "house_inside.png", character);
         florist = new Florist(this, "florist_inside.png", character);
         jeweller = new Jeweller(this, "jeweller_inside.png");
-        clother = new Clother(this, "clother_inside.png");
+        clother = new Clother(this, "clother_inside.png", character);
         waifuPanel = new WaifuPanel(this, "waifuPanel.png");
         timer = new Timer(this, "timer_background.png");
         florist = new Florist(this, "florist_inside.png", character);
@@ -110,7 +110,6 @@ public class GameManager extends AbstractGame {
 
     public static void main(String[] args) {
         GameContainer gc = new GameContainer(new GameManager());
-        System.out.println("\n".codePointAt(0));
         gc.start();
     }
 }
