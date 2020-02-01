@@ -58,7 +58,7 @@ public class GameContainer implements Runnable{
                 unprocessedTime -= UPDATE_CUP;
                 render = true;
 
-                input.update();
+
                 /*
                 if(input.isKey(KeyEvent.VK_A)) {
                     System.out.println("AAA");
@@ -66,6 +66,7 @@ public class GameContainer implements Runnable{
                  */
 
                 game.update(this, UPDATE_CUP);
+                input.update();
 
                 if(frameTime >= 1.0) {
                     frameTime = 0;
