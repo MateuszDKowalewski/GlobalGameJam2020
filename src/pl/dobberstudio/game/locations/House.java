@@ -5,18 +5,24 @@ import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
+import pl.dobberstudio.game.locations.fridge.Fridge;
 
 public class House extends Location
 {
+    boolean openFridge = false;
+
     private Character character;
 
     private MapLocation[] furniture;
+    Fridge fridge;
 
 
     public House(GameManager gm, String path, Character character)
     {
         super(gm, path);
         this.character = character;
+
+        fridge = new Fridge(gm, "res/fridge/fridge.png", character, this, 250, 30);
 
         int c = 38;
         furniture = new MapLocation[5];
@@ -28,7 +34,7 @@ public class House extends Location
                 gm.setLocation(CurrentLocation.CITY);
             }
         });
-        furniture[1] = new MapLocation(gm,"house_kitchen.png", c * 12, c * 5);
+        furniture[1] = new MapLocation(gm,"house_kitchen.png", c * 12, c * 6);
         furniture[1].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -36,15 +42,15 @@ public class House extends Location
                 System.out.println("kitchen");
             }
         });
-        furniture[2] = new MapLocation(gm,"house_fridge.png", c * 16, c * 2);
+        furniture[2] = new MapLocation(gm,"house_fridge.png", c * 16, c * 3);
         furniture[2].setOnClick(new Runnable() {
             @Override
             public void run()
             {
-                System.out.println("fridge");
+                setOpenFridge(true);
             }
         });
-        furniture[3] = new MapLocation(gm,"house_bed.png", c * 21, c * 6);
+        furniture[3] = new MapLocation(gm,"house_bed.png", c * 21, c * 2);
         furniture[3].setOnClick(new Runnable() {
             @Override
             public void run()
@@ -62,12 +68,19 @@ public class House extends Location
         });
     }
 
+    public void setOpenFridge(boolean openFridge) {
+        this.openFridge = openFridge;
+    }
+
     @Override
     public void update(GameContainer gc, double deltaTime)
     {
-        for(MapLocation m : furniture)
-        {
-            m.isClicked(gc);
+        if(openFridge) {
+            fridge.update(gc, deltaTime);
+        } else {
+            for (MapLocation m : furniture) {
+                m.isClicked(gc);
+            }
         }
     }
 
@@ -77,6 +90,9 @@ public class House extends Location
         for(MapLocation m : furniture)
         {
             renderer.drawImage(m.getIcon(), (int)m.x, (int)m.y);
+        }
+        if(openFridge) {
+            fridge.render(gc, renderer);
         }
     }
 }

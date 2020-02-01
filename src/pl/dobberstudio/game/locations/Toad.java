@@ -2,12 +2,14 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
+import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.GameManager;
+import pl.dobberstudio.game.eq.Food;
 
 public class Toad extends Location
 {
     ToadProduct products[];
-    public Toad(GameManager gm, String path)
+    public Toad(GameManager gm, String path, Character character)
     {
         super(gm, path);
         products = new ToadProduct[15];
@@ -16,7 +18,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("bread");
+                if(character.getMoney() > products[0].getPrice()) {
+                    character.spendMoney(products[0].getPrice());
+                    character.addFood(Food.BREAD, 1);
+                }
             }
         });
         products[1] = new ToadProduct(gm,"ropuch/cheese.png", 482, 9, 1);
@@ -24,7 +29,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("cheese");
+                if(character.getMoney() > products[1].getPrice()) {
+                    character.spendMoney(products[1].getPrice());
+                    character.addFood(Food.CHEESE, 1);
+                }
             }
         });
         products[2] = new ToadProduct(gm,"ropuch/chips.png", 868, 9, 1);
@@ -32,7 +40,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("chips");
+                if(character.getMoney() > products[2].getPrice()) {
+                    character.spendMoney(products[2].getPrice());
+                    character.addFood(Food.LAYS, 1);
+                }
             }
         });
         products[3] = new ToadProduct(gm,"ropuch/chocolate.png", 46, 178, 1);
@@ -40,7 +51,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("chocolate");
+                if(character.getMoney() > products[3].getPrice()) {
+                    character.spendMoney(products[3].getPrice());
+                    character.addFood(Food.CHOCKED, 1);
+                }
             }
         });
         products[4] = new ToadProduct(gm,"ropuch/eggs.png", 334, 178, 1);
@@ -48,7 +62,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("eggs");
+                if(character.getMoney() > products[4].getPrice()) {
+                    character.spendMoney(products[4].getPrice());
+                    character.addFood(Food.EGGS, 1);
+                }
             }
         });
         products[5] = new ToadProduct(gm,"ropuch/harnold.png", 628, 178, 1);
@@ -56,7 +73,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("harnold");
+                if(character.getMoney() > products[5].getPrice()) {
+                    character.spendMoney(products[5].getPrice());
+                    character.addFood(Food.BEERS, 1);
+                }
             }
         });
         products[6] = new ToadProduct(gm,"ropuch/tomatoes.png", 912, 178, 1);
@@ -64,7 +84,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("tomatoes");
+                if(character.getMoney() > products[6].getPrice()) {
+                    character.spendMoney(products[6].getPrice());
+                    character.addFood(Food.TOMATOES, 1);
+                }
             }
         });
         products[7] = new ToadProduct(gm,"ropuch/wine.png", 92, 336, 1);
@@ -72,7 +95,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("wine");
+                if(character.getMoney() > products[7].getPrice()) {
+                    character.spendMoney(products[7].getPrice());
+                    character.addFood(Food.WINE, 1);
+                }
             }
         });
         products[8] = new ToadProduct(gm,"ropuch/krakus.png", 478, 336, 1);
@@ -80,7 +106,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("krakus");
+                if(character.getMoney() > products[8].getPrice()) {
+                    character.spendMoney(products[8].getPrice());
+                    character.addFood(Food.HAM, 1);
+                }
             }
         });
         products[9] = new ToadProduct(gm,"ropuch/pasta.png", 864, 336, 1);
@@ -88,7 +117,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("pasta");
+                if(character.getMoney() > products[9].getPrice()) {
+                    character.spendMoney(products[9].getPrice());
+                    character.addFood(Food.PASTA, 1);
+                }
             }
         });
         products[10] = new ToadProduct(gm,"ropuch/lipton.png", 96, 494, 1);
@@ -96,7 +128,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("lipton");
+                if(character.getMoney() > products[10].getPrice()) {
+                    character.spendMoney(products[10].getPrice());
+                    character.addFood(Food.TEA, 1);
+                }
             }
         });
         products[11] = new ToadProduct(gm,"ropuch/milk.png", 288, 494, 1);
@@ -104,7 +139,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("milk");
+                if(character.getMoney() > products[11].getPrice()) {
+                    character.spendMoney(products[11].getPrice());
+                    character.addFood(Food.MILK, 1);
+                }
             }
         });
         products[12] = new ToadProduct(gm,"ropuch/oyakata.png", 480, 494, 1);
@@ -112,7 +150,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("oyakata");
+                if(character.getMoney() > products[12].getPrice()) {
+                    character.spendMoney(products[12].getPrice());
+                    character.addFood(Food.SOUP, 1);
+                }
             }
         });
         products[13] = new ToadProduct(gm,"ropuch/sausage.png", 674, 494, 1);
@@ -120,7 +161,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("sausage");
+                if(character.getMoney() > products[13].getPrice()) {
+                    character.spendMoney(products[13].getPrice());
+                    character.addFood(Food.SAUSAGE, 1);
+                }
             }
         });
         products[14] = new ToadProduct(gm,"ropuch/stern.png", 868, 494, 1);
@@ -128,7 +172,10 @@ public class Toad extends Location
             @Override
             public void run()
             {
-                System.out.println("stern");
+                if(character.getMoney() > products[14].getPrice()) {
+                    character.spendMoney(products[14].getPrice());
+                    character.addFood(Food.BEER, 1);
+                }
             }
         });
     }
