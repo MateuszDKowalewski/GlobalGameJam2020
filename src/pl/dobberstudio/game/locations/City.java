@@ -33,7 +33,7 @@ public class City extends Location
         locations[2].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("clothes");
+                gm.setLocation(CurrentLocation.CLOTHER);
             }
         });
         locations[3] = new MapLocation(gm, "jeweller.png", c * 14, c * 2);

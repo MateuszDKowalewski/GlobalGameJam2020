@@ -28,6 +28,7 @@ public class GameManager extends AbstractGame {
     private WaifuPanel waifuPanel;
     private Florist florist;
     private Jeweller jeweller;
+    private Clother clother;
     private Stats stats;
     private Timer timer;
   
@@ -45,6 +46,7 @@ public class GameManager extends AbstractGame {
         house = new House(this, "house_inside.png", character);
         florist = new Florist(this, "florist_inside.png");
         jeweller = new Jeweller(this, "jeweller_inside.png");
+        clother = new Clother(this, "clother_inside.png");
         waifuPanel = new WaifuPanel(this, "waifuPanel.png");
         timer = new Timer(this, "timer_background.png");
     }
@@ -61,6 +63,7 @@ public class GameManager extends AbstractGame {
             case HOUSE: house.update(gc, deltaTime); break;
             case FLORIST: florist.update(gc, deltaTime); break;
             case JEWELLER: jeweller.update(gc, deltaTime); break;
+            case CLOTHER: clother.update(gc, deltaTime); break;
             case WAIFU_PANEL: waifuPanel.update(gc, deltaTime); break;
         }
         if((current != CurrentLocation.CHARACTER_PANEL) && (current != CurrentLocation.WAIFU_PANEL))
@@ -79,6 +82,7 @@ public class GameManager extends AbstractGame {
             case HOUSE: house.render(gc, renderer); break;
             case FLORIST: florist.render(gc, renderer); break;
             case JEWELLER: jeweller.render(gc, renderer); break;
+            case CLOTHER: clother.render(gc, renderer); break;
             case WAIFU_PANEL: waifuPanel.render(gc, renderer); break;
         }
         if((current != CurrentLocation.CHARACTER_PANEL) && (current != CurrentLocation.WAIFU_PANEL))
@@ -100,6 +104,7 @@ public class GameManager extends AbstractGame {
         if(gc.getInput().isKeyDown(KeyEvent.VK_Y)) setLocation(CurrentLocation.HOUSE);
         if(gc.getInput().isKeyDown(KeyEvent.VK_U)) setLocation(CurrentLocation.FLORIST);
         if(gc.getInput().isKeyDown(KeyEvent.VK_I)) setLocation(CurrentLocation.JEWELLER);
+        if(gc.getInput().isKeyDown(KeyEvent.VK_O)) setLocation(CurrentLocation.CLOTHER);
     }
 
     public static void main(String[] args) {
