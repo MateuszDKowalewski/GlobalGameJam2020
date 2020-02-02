@@ -29,8 +29,10 @@ public class GameManager extends AbstractGame {
     private Florist florist;
     private Jeweller jeweller;
     private Clother clother;
+    private DatePlace[] datePlace;
     private Stats stats;
     private Timer timer;
+    private EndingPanel[] endingPanel;
   
     public GameManager() {
         character = new Character();
@@ -50,6 +52,16 @@ public class GameManager extends AbstractGame {
         waifuPanel = new WaifuPanel(this, "waifuPanel.png");
         timer = new Timer(this, "timer_background.png");
         florist = new Florist(this, "florist_inside.png", character);
+        datePlace = new DatePlace[5];
+        datePlace[0] = new DatePlace(this, "datePlaces/restaurant_inside.png");
+        datePlace[1] = new DatePlace(this, "datePlaces/cinema_inside.png");
+        datePlace[2] = new DatePlace(this, "datePlaces/orlen_inside.png");
+        datePlace[3] = new DatePlace(this, "datePlaces/pub_inside.png");
+        datePlace[4] = new DatePlace(this, "datePlaces/park_inside.png");
+        endingPanel = new EndingPanel[3];
+        endingPanel[0] = new EndingPanel(this, "endings/ending_bad.png");
+        endingPanel[1] = new EndingPanel(this, "endings/ending_good.png");
+        endingPanel[2] = new EndingPanel(this, "endings/ending_best.png");
     }
 
     @Override
@@ -66,10 +78,19 @@ public class GameManager extends AbstractGame {
             case JEWELLER: jeweller.update(gc, deltaTime); break;
             case CLOTHER: clother.update(gc, deltaTime); break;
             case WAIFU_PANEL: waifuPanel.update(gc, deltaTime); break;
+            case RESTAURANT: datePlace[0].update(gc, deltaTime); break;
+            case CINEMA: datePlace[1].update(gc, deltaTime); break;
+            case ORLEN: datePlace[2].update(gc, deltaTime); break;
+            case PUB: datePlace[3].update(gc, deltaTime); break;
+            case PARK: datePlace[4].update(gc, deltaTime); break;
+            case ENDING_BAD: endingPanel[0].update(gc, deltaTime); break;
+            case ENDING_GOOD: endingPanel[1].update(gc, deltaTime); break;
+            case ENDING_BEST: endingPanel[2].update(gc, deltaTime); break;
         }
-        if((current != CurrentLocation.CHARACTER_PANEL) && (current != CurrentLocation.WAIFU_PANEL))
+        if((current != CurrentLocation.CHARACTER_PANEL) && (current != CurrentLocation.WAIFU_PANEL) && (current != CurrentLocation.ENDING_BAD) && (current != CurrentLocation.ENDING_GOOD) && (current != CurrentLocation.ENDING_BEST))
         stats.update(gc, deltaTime);
-        timer.update(gc, deltaTime);
+        if((current != CurrentLocation.ENDING_BAD) && (current != CurrentLocation.ENDING_GOOD) && (current != CurrentLocation.ENDING_BEST))
+        timer.update(this, gc, deltaTime);
     }
 
     @Override
@@ -85,9 +106,18 @@ public class GameManager extends AbstractGame {
             case JEWELLER: jeweller.render(gc, renderer); break;
             case CLOTHER: clother.render(gc, renderer); break;
             case WAIFU_PANEL: waifuPanel.render(gc, renderer); break;
+            case RESTAURANT: datePlace[0].render(gc, renderer); break;
+            case CINEMA: datePlace[1].render(gc, renderer); break;
+            case ORLEN: datePlace[2].render(gc, renderer); break;
+            case PUB: datePlace[3].render(gc, renderer); break;
+            case PARK: datePlace[4].render(gc, renderer); break;
+            case ENDING_BAD: endingPanel[0].render(gc, renderer); break;
+            case ENDING_GOOD: endingPanel[1].render(gc, renderer); break;
+            case ENDING_BEST: endingPanel[2].render(gc, renderer); break;
         }
-        if((current != CurrentLocation.CHARACTER_PANEL) && (current != CurrentLocation.WAIFU_PANEL))
-        stats.render(gc, renderer);
+        if((current != CurrentLocation.CHARACTER_PANEL) && (current != CurrentLocation.WAIFU_PANEL) && (current != CurrentLocation.ENDING_BAD) && (current != CurrentLocation.ENDING_GOOD) && (current != CurrentLocation.ENDING_BEST))
+            stats.render(gc, renderer);
+        if((current != CurrentLocation.ENDING_BAD) && (current != CurrentLocation.ENDING_GOOD) && (current != CurrentLocation.ENDING_BEST))
         timer.render(gc, renderer);
     }
 
@@ -97,15 +127,11 @@ public class GameManager extends AbstractGame {
 
 
     public void setLocationByKey(GameContainer gc) {
-        if(gc.getInput().isKeyDown(KeyEvent.VK_Q)) setLocation(CurrentLocation.WORK_ROPUCH);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_W)) setLocation(CurrentLocation.GYM);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_E)) setLocation(CurrentLocation.TOAD);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_R)) setLocation(CurrentLocation.CITY);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_T)) setLocation(CurrentLocation.CHARACTER_PANEL);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_Y)) setLocation(CurrentLocation.HOUSE);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_U)) setLocation(CurrentLocation.FLORIST);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_I)) setLocation(CurrentLocation.JEWELLER);
-        if(gc.getInput().isKeyDown(KeyEvent.VK_O)) setLocation(CurrentLocation.CLOTHER);
+        if(gc.getInput().isKeyDown(KeyEvent.VK_Q)) setLocation(CurrentLocation.CITY);
+        if(gc.getInput().isKeyDown(KeyEvent.VK_W)) setLocation(CurrentLocation.ENDING_BAD);
+        if(gc.getInput().isKeyDown(KeyEvent.VK_E)) setLocation(CurrentLocation.ENDING_GOOD);
+        if(gc.getInput().isKeyDown(KeyEvent.VK_R)) setLocation(CurrentLocation.ENDING_BEST);
+
     }
 
     public static void main(String[] args) {

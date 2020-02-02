@@ -47,7 +47,7 @@ public class City extends Location
         locations[4].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("restaurant");
+                gm.setLocation(CurrentLocation.RESTAURANT);
             }
         });
         locations[5] = new MapLocation(gm, "florist.png", c * 40, c * 4);
@@ -61,7 +61,7 @@ public class City extends Location
         locations[6].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("park");
+                gm.setLocation(CurrentLocation.PARK);
             }
         });
         locations[7] = new MapLocation(gm, "work.png", c * 40, c * 14);
@@ -75,21 +75,21 @@ public class City extends Location
         locations[8].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("pub");
+                gm.setLocation(CurrentLocation.PUB);
             }
         });
         locations[9] = new MapLocation(gm, "orlen.png", c * 56, c * 2);
         locations[9].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("orlen");
+                gm.setLocation(CurrentLocation.ORLEN);
             }
         });
         locations[10] = new MapLocation(gm, "cinema.png", c * 54, c * 14);
         locations[10].setOnClick(new Runnable() {
             @Override
             public void run() {
-                System.out.println("cinema");
+                gm.setLocation(CurrentLocation.CINEMA);
             }
         });
         locations[11] = new MapLocation(gm, "gym.png", c * 54, c * 27);

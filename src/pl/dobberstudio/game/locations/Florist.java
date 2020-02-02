@@ -16,7 +16,7 @@ public class Florist extends Location
 
     public Florist(GameManager gm, String path, Character character)
     {
-        super(gm, "florist_inside.png");
+        super(gm, path);
         exit = new MapLocation(gm, "exit.png", 1027, 19);
         exit.setOnClick(new Runnable() {
             @Override
