@@ -7,7 +7,7 @@ public class GameContainer implements Runnable{
     public static final int WIDTH = 1216;
     public static final int HEIGHT = 684;
     public static final float SCALE = 1f;
-    public static final String TITLE = "Global Game Jam 2020";
+    public static final String TITLE = "5 Minutes Before Date";
 
     private Thread thread;
     private Window window;

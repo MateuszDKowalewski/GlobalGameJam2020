@@ -64,6 +64,10 @@ public class WorkRopuch extends Location {
 
     @Override
     public void update(GameContainer gc, double deltaTime) {
+        if(character.getTiredness() <= 0) {
+            gm.setLocation(CurrentLocation.CITY);
+        }
+
         if(gc.getInput().isButtonDown(MouseEvent.BUTTON1)) {
             products.forEach(p -> {
                 if(p.contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {

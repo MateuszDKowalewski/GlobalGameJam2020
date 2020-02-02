@@ -123,6 +123,10 @@ public class GameManager extends AbstractGame {
 
     @Override
     public void update(GameContainer gc, double deltaTime) {
+        if(character.getHunger() <= 0) {
+            setLocation(CurrentLocation.ENDING_BAD);
+        }
+
         setLocationByKey(gc);
         switch(current) {
             case WORK_ROPUCH: workRopuch.update(gc, deltaTime); break;
