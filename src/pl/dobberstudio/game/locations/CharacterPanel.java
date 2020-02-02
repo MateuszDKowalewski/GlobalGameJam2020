@@ -58,5 +58,18 @@ public class CharacterPanel extends Location
         renderer.drawRect(BAR_X_START, BODY_BAR_Y, width, BAR_HEIGHT, 0xFF00FF00);
 
         renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
+
+        if(character.getEquipment().getHeadValue() > 0) {
+            renderer.drawImage(character.getEquipment().getHead().getIcon(), 400, 150);
+        }
+        if(character.getEquipment().getBodyValue() > 0) {
+            renderer.drawImage(character.getEquipment().getBody().getIcon(), 600, 150);
+        }
+        if(character.getEquipment().getLegsValue() > 0) {
+            renderer.drawImage(character.getEquipment().getLegs().getIcon(), 800, 150);
+        }
+        if(character.getEquipment().getFootsValue() > 0) {
+            renderer.drawImage(character.getEquipment().getFoots().getIcon(), 1000, 150);
+        }
     }
 }

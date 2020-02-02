@@ -32,8 +32,8 @@ public class Gym extends Location {
             }
         });
         boy = new Image("res/pullUpBoy.png");
-        boyX = 560;
-        boyY = 300;
+        boyX = 583;
+        boyY = 60;
         upTime = DEFAULT_UP_TIME;
         this.character = character;
     }
@@ -51,13 +51,13 @@ public class Gym extends Location {
         }
 
 
-        if(boyY > 300) {
-            boyY = 300;
+        if(boyY > 60) {
+            boyY = 60;
         }
 
-        if(boyY < 50) {
+        if(boyY < -118) {
             madePullUp();
-            boyY = 300;
+            boyY = 60;
         }
         exit.isClicked(gc);
     }
