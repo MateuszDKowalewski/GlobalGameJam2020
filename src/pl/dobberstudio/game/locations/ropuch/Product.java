@@ -51,6 +51,14 @@ public class Product extends Rectangle2D.Double {
         this.y += dy;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
     public void setMade(boolean made) {
         this.made = made;
     }
