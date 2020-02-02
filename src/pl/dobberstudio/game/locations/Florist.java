@@ -18,67 +18,46 @@ public class Florist extends Location
     {
         super(gm, path);
         exit = new MapLocation(gm, "exit.png", 1027, 19);
-        exit.setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                gm.setLocation(CurrentLocation.CITY);
-            }
-        });
+        exit.setOnClick(() -> gm.setLocation(CurrentLocation.CITY));
         flowers = new ToadProduct[5];
-        flowers[0] = new ToadProduct(gm, "florist/mixed.png", 290, 20, 1);
-        flowers[0].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                if(character.getMoney() > flowers[0].getPrice()) {
-                    character.spendMoney(flowers[0].getPrice());
-                    character.addFlowers(Flowers.MIXED, 1);
-                }
+        flowers[0] = new ToadProduct(gm, "florist/mixed.png", 290, 20, 25);
+        flowers[0].setValue(5);
+        flowers[0].setOnClick(() -> {
+            if(character.getMoney() > flowers[0].getPrice()) {
+                character.spendMoney(flowers[0].getPrice());
+                character.addFlowers(Flowers.MIXED, 1);
             }
         });
-        flowers[1] = new ToadProduct(gm, "florist/roses.png", 670, 20, 1);
-        flowers[1].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                if(character.getMoney() > flowers[1].getPrice()) {
-                    character.spendMoney(flowers[1].getPrice());
-                    character.addFlowers(Flowers.ROSES, 1);
-                }
+        flowers[1] = new ToadProduct(gm, "florist/roses.png", 670, 20, 20);
+        flowers[1].setValue(4);
+        flowers[1].setOnClick(() -> {
+            if(character.getMoney() > flowers[1].getPrice()) {
+                character.spendMoney(flowers[1].getPrice());
+                character.addFlowers(Flowers.ROSES, 1);
             }
         });
-        flowers[2] = new ToadProduct(gm, "florist/tulips.png", 90, 344, 1);
-        flowers[2].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                if(character.getMoney() > flowers[2].getPrice()) {
-                    character.spendMoney(flowers[2].getPrice());
-                    character.addFlowers(Flowers.TULIPS, 1);
-                }
+        flowers[2] = new ToadProduct(gm, "florist/tulips.png", 90, 344, 15);
+        flowers[2].setValue(3);
+        flowers[2].setOnClick(() -> {
+            if(character.getMoney() > flowers[2].getPrice()) {
+                character.spendMoney(flowers[2].getPrice());
+                character.addFlowers(Flowers.TULIPS, 1);
             }
         });
-        flowers[3] = new ToadProduct(gm, "florist/dandelions.png", 470, 344, 1);
-        flowers[3].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                if(character.getMoney() > flowers[3].getPrice()) {
-                    character.spendMoney(flowers[3].getPrice());
-                    character.addFlowers(Flowers.DANDELIONS, 1);
-                }
+        flowers[3] = new ToadProduct(gm, "florist/dandelions.png", 470, 344, 10);
+        flowers[3].setValue(2);
+        flowers[3].setOnClick(() -> {
+            if(character.getMoney() > flowers[3].getPrice()) {
+                character.spendMoney(flowers[3].getPrice());
+                character.addFlowers(Flowers.DANDELIONS, 1);
             }
         });
-        flowers[4] = new ToadProduct(gm, "florist/chrisantema.png", 892, 344, 1);
-        flowers[4].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                if(character.getMoney() > flowers[4].getPrice()) {
-                    character.spendMoney(flowers[4].getPrice());
-                    character.addFlowers(Flowers.CHRISANTEMA, 1);
-                }
+        flowers[4] = new ToadProduct(gm, "florist/chrisantema.png", 892, 344, 5);
+        flowers[4].setValue(1);
+        flowers[4].setOnClick(() -> {
+            if(character.getMoney() > flowers[4].getPrice()) {
+                character.spendMoney(flowers[4].getPrice());
+                character.addFlowers(Flowers.CHRISANTEMA, 1);
             }
         });
     }

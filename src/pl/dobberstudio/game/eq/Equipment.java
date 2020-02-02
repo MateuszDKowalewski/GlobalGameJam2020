@@ -71,6 +71,22 @@ public class Equipment {
         }
     }
 
+    public int getBestFlowersValue() {
+        int best = 0;
+        for(int i = 0; i < flowers.length; i++) {
+            if(flowers[i] > 0) {
+                switch(i) {
+                    case 0: if(5 > best) best = 5; break;
+                    case 1: if(4 > best) best = 4; break;
+                    case 2: if(3 > best) best = 3; break;
+                    case 3: if(2 > best) best = 2; break;
+                    case 4: if(1 > best) best = 1; break;
+                }
+            }
+        }
+        return best;
+    }
+
     public void setHead(ToadProduct head) {
         this.head = head;
     }

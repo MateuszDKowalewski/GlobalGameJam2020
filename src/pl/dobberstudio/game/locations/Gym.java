@@ -40,6 +40,10 @@ public class Gym extends Location {
 
     @Override
     public void update(GameContainer gc, double deltaTime) {
+        if(character.getTiredness() <= 0) {
+            gm.setLocation(CurrentLocation.CITY);
+        }
+
         upTime -= deltaTime;
         if(upTime < 0) {
             upTime = DEFAULT_UP_TIME;

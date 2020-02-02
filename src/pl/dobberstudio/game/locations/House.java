@@ -14,6 +14,7 @@ import pl.dobberstudio.game.locations.fridge.Fridge;
 public class House extends Location
 {
     boolean openFridge = false;
+    MapLocation date;
 
     private Character character;
 
@@ -81,6 +82,15 @@ public class House extends Location
                 System.out.println("table");
             }
         });
+
+        date = new MapLocation(gm, "date_button.png", 619, 400);
+        date.setOnClick(new Runnable() {
+            @Override
+            public void run()
+            {
+                System.out.println("DATE!!!!");
+            }
+        });
     }
 
     public void setOpenFridge(boolean openFridge) {
@@ -106,6 +116,7 @@ public class House extends Location
             for (MapLocation m : furniture) {
                 m.isClicked(gc);
             }
+            date.isClicked(gc);
         }
     }
 
@@ -143,11 +154,17 @@ public class House extends Location
             dish.render(gc, renderer);
         }
 
+        date.render(gc, renderer);
+
         if(openFridge) {
             fridge.render(gc, renderer);
         }
         if(ovenInUse) {
             oven.render(gc, renderer);
         }
+    }
+
+    public void calculate(Runnable r) {
+        date.setOnClick(r);
     }
 }

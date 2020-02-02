@@ -11,6 +11,7 @@ import pl.dobberstudio.game.locations.ropuch.Product;
 import pl.dobberstudio.game.locations.ropuch.Scanner;
 
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -25,9 +26,13 @@ public class WorkRopuch extends Location {
     private List<Product> products = new ArrayList<>();
     private Basket basket;
 
-    Product grabbedProduct;
-    int grabbedOffX;
-    int grabbedOffY;
+    private Product grabbedProduct;
+    private int grabbedOffX;
+    private int grabbedOffY;
+
+    private double holePrice;
+    private double lastPrice;
+    private String lastName;
 
 
     public WorkRopuch(GameManager gm, String path, Character character) {
@@ -49,12 +54,20 @@ public class WorkRopuch extends Location {
         products.sort(Comparator.comparingDouble(Product::getX));
 
         this.character = character;
+
+        holePrice = 0;
+        lastPrice = 0;
+        lastName = "Product";
     }
 
 
 
     @Override
     public void update(GameContainer gc, double deltaTime) {
+        if(character.getTiredness() <= 0) {
+            gm.setLocation(CurrentLocation.CITY);
+        }
+
         if(gc.getInput().isButtonDown(MouseEvent.BUTTON1)) {
             products.forEach(p -> {
                 if(p.contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
@@ -75,6 +88,11 @@ public class WorkRopuch extends Location {
             grabbedProduct.x = gc.getInput().getMouseX() - grabbedOffX;
             grabbedProduct.y = gc.getInput().getMouseY() - grabbedOffY;
             if(scanner.contains(grabbedProduct.getCenterX(), grabbedProduct.getCenterY())) {
+                if(!grabbedProduct.isMade()) {
+                    lastPrice = grabbedProduct.getPrice();
+                    holePrice += lastPrice;
+                    lastName = grabbedProduct.getName();
+                }
                 scanner.scanProduct(grabbedProduct);
                 boolean all = true;
                 for(Product p : products) {
@@ -83,7 +101,6 @@ public class WorkRopuch extends Location {
                     }
                 }
                 if(all) {
-                    System.out.println("Gratulacje");
                     madeBasket();
                 }
             }
@@ -103,6 +120,10 @@ public class WorkRopuch extends Location {
             products.forEach(p -> p.render(gc, renderer));
         }
         renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
+
+
+        renderer.drawText(lastName + ": $" + new DecimalFormat("#0.0#").format(lastPrice), 150, 450, 0xFF000000);
+        renderer.drawText("Amount: $"  + new DecimalFormat("#0.0#").format(holePrice), 150, 500, 0xFF000000);
     }
 
     public Assortment getAssortment() {
@@ -117,5 +138,9 @@ public class WorkRopuch extends Location {
         basket = new Basket(this);
         products = new ArrayList<>();
         basket.getProducts().forEach(p -> products.add(p));
+
+        holePrice = 0;
+        lastPrice = 0;
+        lastName = "Product";
     }
 }

@@ -19,7 +19,7 @@ public class Jeweller extends Location
         exit.setOnClick(() -> gm.setLocation(CurrentLocation.CITY));
 
         jewelery = new ToadProduct[5];
-        jewelery[0] = new ToadProduct(gm, "jeweller/diamond_ring.png", 250, 20, 1);
+        jewelery[0] = new ToadProduct(gm, "jeweller/diamond_ring.png", 250, 20, 50);
         jewelery[0].setValue(5);
         jewelery[0].setRingType(Rings.DIAMOND);
         jewelery[0].setOnClick(() -> {
@@ -28,7 +28,7 @@ public class Jeweller extends Location
                 character.getEquipment().setRing(jewelery[0]);
             }
         });
-        jewelery[1] = new ToadProduct(gm, "jeweller/gold_ring.png", 670, 20, 1);
+        jewelery[1] = new ToadProduct(gm, "jeweller/gold_ring.png", 670, 20, 30);
         jewelery[1].setValue(3);
         jewelery[1].setRingType(Rings.GOLD);
         jewelery[1].setOnClick(() -> {
@@ -37,7 +37,7 @@ public class Jeweller extends Location
                 character.getEquipment().setRing(jewelery[1]);
             }
         });
-        jewelery[2] = new ToadProduct(gm, "jeweller/earrings.png", 90, 344, 1);
+        jewelery[2] = new ToadProduct(gm, "jeweller/earrings.png", 90, 344, 40);
         jewelery[2].setValue(4);
         jewelery[2].setRingType(Rings.EAR);
         jewelery[2].setOnClick(() -> {
@@ -46,7 +46,7 @@ public class Jeweller extends Location
                 character.getEquipment().setRing(jewelery[2]);
             }
         });
-        jewelery[3] = new ToadProduct(gm, "jeweller/silver_ring.png", 470, 344, 1);
+        jewelery[3] = new ToadProduct(gm, "jeweller/silver_ring.png", 470, 344, 20);
         jewelery[3].setValue(2);
         jewelery[3].setRingType(Rings.SILVER);
         jewelery[3].setOnClick(() -> {
@@ -55,7 +55,7 @@ public class Jeweller extends Location
                 character.getEquipment().setRing(jewelery[3]);
             }
         });
-        jewelery[4] = new ToadProduct(gm, "jeweller/tymbark.png", 892, 344, 1);
+        jewelery[4] = new ToadProduct(gm, "jeweller/tymbark.png", 892, 344, 10);
         jewelery[4].setValue(1);
         jewelery[4].setRingType(Rings.TYMBARK);
         jewelery[4].setOnClick(() -> {
