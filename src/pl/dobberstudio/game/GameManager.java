@@ -34,10 +34,18 @@ public class GameManager extends AbstractGame {
     private Timer timer;
     private EndingPanel[] endingPanel;
     private Waifu waifu;
+
+    private MapLocation splashScreen;
   
     public GameManager() {
         character = new Character();
-        current = CurrentLocation.CITY;
+        current = CurrentLocation.SPLASH;
+
+        splashScreen = new MapLocation(this, "Splash.png", 0, 0);
+        splashScreen.setOnClick(() -> {
+            setLocation(CurrentLocation.CITY);
+        });
+
 
         stats = new Stats(this,"stats_bar.png", character);
 
@@ -154,6 +162,10 @@ public class GameManager extends AbstractGame {
 
     @Override
     public void update(GameContainer gc, double deltaTime) {
+        if(current == CurrentLocation.SPLASH) {
+            splashScreen.isClicked(gc);
+            return;
+        }
         if(character.getHunger() <= 0) {
             setLocation(CurrentLocation.ENDING_BAD);
         }
@@ -187,6 +199,10 @@ public class GameManager extends AbstractGame {
 
     @Override
     public void render(GameContainer gc, Renderer renderer) {
+        if(current == CurrentLocation.SPLASH) {
+            splashScreen.render(gc, renderer);
+            return;
+        }
         switch(current) {
             case WORK_ROPUCH: workRopuch.render(gc, renderer); break;
             case GYM: gym.render(gc, renderer); break;
