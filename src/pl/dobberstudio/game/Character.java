@@ -134,26 +134,13 @@ public class Character {
         return equipment;
     }
 
-    public static int getMaxLook() {
-        return MAX_LOOK;
+    public int getBestFlowersValue() {
+        return equipment.getBestFlowersValue();
     }
 
-    public static int getMaxBody() {
-        return MAX_BODY;
+    public void addLook(int value) {
+        look += value;
     }
-
-    public static int getMaxCharisma() {
-        return MAX_CHARISMA;
-    }
-
-    public static int getMaxHunger() {
-        return MAX_HUNGER;
-    }
-
-    public static int getMaxTiredness() {
-        return MAX_TIREDNESS;
-    }
-
 
     public void sleep()
     {
