@@ -103,7 +103,7 @@ public class Character {
     }
 
     public void eat(int hunger) {
-        this.hunger += hunger;
+        this.hunger = Integer.min(this.hunger + hunger, MAX_HUNGER);
     }
 
     public int getLook() {
@@ -152,6 +152,12 @@ public class Character {
 
     public static int getMaxTiredness() {
         return MAX_TIREDNESS;
+    }
+
+
+    public void sleep()
+    {
+        tiredness = MAX_TIREDNESS;
     }
 
     @Override

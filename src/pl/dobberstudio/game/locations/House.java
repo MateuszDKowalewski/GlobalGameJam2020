@@ -69,12 +69,9 @@ public class House extends Location
             }
         });
         furniture[3] = new MapLocation(gm,"house_bed.png", c * 21, c * 2);
-        furniture[3].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                System.out.println("bed");
-            }
+        furniture[3].setOnClick(() -> {
+            gm.getTimer().sleep();
+            gm.getCharacter().sleep();
         });
         furniture[4] = new MapLocation(gm,"house_table.png", c * 3, c * 10);
         furniture[4].setOnClick(new Runnable() {
