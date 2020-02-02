@@ -10,9 +10,16 @@ public class DatePlace extends Location
 {
     MapLocation exit;
     MapLocation date;
-    public DatePlace(GameManager gm, String path)
+    private int romantic;
+    private int food;
+    private int money;
+
+    public DatePlace(GameManager gm, String path, int romantic, int food, int money)
     {
         super(gm, path);
+        this.romantic = romantic;
+        this.food = food;
+        this.money = money;
         exit = new MapLocation(gm, "exit.png", 1027, 19);
         exit.setOnClick(new Runnable() {
             @Override
@@ -31,6 +38,10 @@ public class DatePlace extends Location
         });
     }
 
+    public void calculate(Runnable r) {
+        date.setOnClick(r);
+    }
+
     @Override
     public void update(GameContainer gc, double deltaTime)
     {
@@ -44,6 +55,18 @@ public class DatePlace extends Location
         super.render(gc, renderer);
         renderer.drawImage(exit.getIcon(), (int)exit.x, (int)exit.y);
         renderer.drawImage(date.getIcon(), (int)date.x, (int)date.y);
+    }
+
+    public int getRomantic() {
+        return romantic;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }
 

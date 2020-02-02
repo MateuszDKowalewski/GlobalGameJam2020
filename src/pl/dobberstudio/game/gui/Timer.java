@@ -33,4 +33,9 @@ public class Timer
         else
         renderer.drawText(Integer.toString((int)(timeLeft / 60)) + " : " + Integer.toString((int)(timeLeft % 60)), 580, 6, 0xFFAA06BA);
     }
+
+    public void sleep()
+    {
+        timeLeft -= 10;
+    }
 }

@@ -33,6 +33,7 @@ public class GameManager extends AbstractGame {
     private Stats stats;
     private Timer timer;
     private EndingPanel[] endingPanel;
+    private Waifu waifu;
   
     public GameManager() {
         character = new Character();
@@ -53,15 +54,71 @@ public class GameManager extends AbstractGame {
         timer = new Timer(this, "timer_background.png");
         florist = new Florist(this, "florist_inside.png", character);
         datePlace = new DatePlace[5];
-        datePlace[0] = new DatePlace(this, "datePlaces/restaurant_inside.png");
-        datePlace[1] = new DatePlace(this, "datePlaces/cinema_inside.png");
-        datePlace[2] = new DatePlace(this, "datePlaces/orlen_inside.png");
-        datePlace[3] = new DatePlace(this, "datePlaces/pub_inside.png");
-        datePlace[4] = new DatePlace(this, "datePlaces/park_inside.png");
+        datePlace[0] = new DatePlace(this, "datePlaces/restaurant_inside.png", 1, 1, 1);
+        datePlace[0].calculate(() -> {
+            int score = 0;
+            score += character.getCharisma() * waifu.getCharisma();
+            score += character.getMoney() / 10 * waifu.getMoney(); //TODO: jewellery && flowers factor
+            score += character.getBody() * waifu.getBody();
+            score += character.getLook() * waifu.getLook();
+            score += datePlace[0].getRomantic() * waifu.getRomantic();
+            score += datePlace[0].getFood() * waifu.getFood();
+            score += datePlace[0].getMoney()  * waifu.getMoney();
+            chooseEnding(score);
+        });
+        datePlace[1] = new DatePlace(this, "datePlaces/cinema_inside.png", 1, 1, 1);
+        datePlace[1].calculate(() -> {
+            int score = 0;
+            score += character.getCharisma() * waifu.getCharisma();
+            score += character.getMoney() / 10 * waifu.getMoney(); //TODO: jewellery && flowers factor
+            score += character.getBody() * waifu.getBody();
+            score += character.getLook() * waifu.getLook();
+            score += datePlace[1].getRomantic() * waifu.getRomantic();
+            score += datePlace[1].getFood() * waifu.getFood();
+            score += datePlace[1].getMoney()  * waifu.getMoney();
+            chooseEnding(score);
+        });
+        datePlace[2] = new DatePlace(this, "datePlaces/orlen_inside.png",1, 1, 1);
+        datePlace[2].calculate(() -> {
+            int score = 0;
+            score += character.getCharisma() * waifu.getCharisma();
+            score += character.getMoney() / 10 * waifu.getMoney(); //TODO: jewellery && flowers factor
+            score += character.getBody() * waifu.getBody();
+            score += character.getLook() * waifu.getLook();
+            score += datePlace[2].getRomantic() * waifu.getRomantic();
+            score += datePlace[2].getFood() * waifu.getFood();
+            score += datePlace[2].getMoney()  * waifu.getMoney();
+            chooseEnding(score);
+        });
+        datePlace[3] = new DatePlace(this, "datePlaces/pub_inside.png",1 ,1 , 1);
+        datePlace[3].calculate(() -> {
+            int score = 0;
+            score += character.getCharisma() * waifu.getCharisma();
+            score += character.getMoney() / 10 * waifu.getMoney(); //TODO: jewellery && flowers factor
+            score += character.getBody() * waifu.getBody();
+            score += character.getLook() * waifu.getLook();
+            score += datePlace[3].getRomantic() * waifu.getRomantic();
+            score += datePlace[3].getFood() * waifu.getFood();
+            score += datePlace[3].getMoney()  * waifu.getMoney();
+            chooseEnding(score);
+        });
+        datePlace[4] = new DatePlace(this, "datePlaces/park_inside.png",1 ,1 ,1 );
+        datePlace[4].calculate(() -> {
+            int score = 0;
+            score += character.getCharisma() * waifu.getCharisma();
+            score += character.getMoney() / 10 * waifu.getMoney(); //TODO: jewellery && flowers factor
+            score += character.getBody() * waifu.getBody();
+            score += character.getLook() * waifu.getLook();
+            score += datePlace[4].getRomantic() * waifu.getRomantic();
+            score += datePlace[4].getFood() * waifu.getFood();
+            score += datePlace[4].getMoney()  * waifu.getMoney();
+            chooseEnding(score);
+        });
         endingPanel = new EndingPanel[3];
         endingPanel[0] = new EndingPanel(this, "endings/ending_bad.png");
         endingPanel[1] = new EndingPanel(this, "endings/ending_good.png");
         endingPanel[2] = new EndingPanel(this, "endings/ending_best.png");
+        waifu = new Waifu("Emilly", "KAWAII", 4, 2, 1, 1, 4, 2);
     }
 
     @Override
@@ -132,6 +189,31 @@ public class GameManager extends AbstractGame {
         if(gc.getInput().isKeyDown(KeyEvent.VK_E)) setLocation(CurrentLocation.ENDING_GOOD);
         if(gc.getInput().isKeyDown(KeyEvent.VK_R)) setLocation(CurrentLocation.ENDING_BEST);
 
+    }
+
+    private void chooseEnding(int score)
+    {
+        System.out.println(score);
+        if(score < 20)
+        {
+            this.setLocation(CurrentLocation.ENDING_BAD);
+        }
+        else if(score >= 40 && score < 80)
+        {
+            this.setLocation(CurrentLocation.ENDING_GOOD);
+        }
+        else
+        {
+            this.setLocation(CurrentLocation.ENDING_BEST);
+        }
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 
     public static void main(String[] args) {
