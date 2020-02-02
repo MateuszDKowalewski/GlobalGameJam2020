@@ -2,11 +2,13 @@ package pl.dobberstudio.game.locations;
 
 import pl.dobberstudio.game.GameManager;
 import pl.dobberstudio.game.eq.Food;
+import pl.dobberstudio.game.eq.Rings;
 import pl.dobberstudio.game.gui.Button;
 
 public class ToadProduct extends Button
 {
     private Food foodKind;
+    private Rings ringType;
     private int value;
 
     private int price;
@@ -34,5 +36,13 @@ public class ToadProduct extends Button
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public Rings getRingType() {
+        return ringType;
+    }
+
+    public void setRingType(Rings ringType) {
+        this.ringType = ringType;
     }
 }

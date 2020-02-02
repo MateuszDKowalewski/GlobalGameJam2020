@@ -14,6 +14,8 @@ public class Equipment {
     private ToadProduct legs;
     private ToadProduct foots;
 
+    private ToadProduct ring;
+
     public Equipment() {
     }
 
@@ -127,6 +129,21 @@ public class Equipment {
             return 0;
         }
         return foots.getValue();
+    }
+
+    public ToadProduct getRing() {
+        return ring;
+    }
+    public int getRingValue() {
+        if(ring == null) {
+            return 0;
+        }
+        return  ring.getValue();
+    }
+
+
+    public void setRing(ToadProduct ring) {
+        this.ring = ring;
     }
 
     @Override
