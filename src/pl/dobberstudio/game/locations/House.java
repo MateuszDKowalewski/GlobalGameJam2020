@@ -1,11 +1,13 @@
 package pl.dobberstudio.game.locations;
 
+import pl.dobberstudio.dish.Oven;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.engine.gfx.Image;
 import pl.dobberstudio.game.Character;
 import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
+import pl.dobberstudio.game.eq.Dish;
 import pl.dobberstudio.game.eq.Flowers;
 import pl.dobberstudio.game.locations.fridge.Fridge;
 
@@ -16,7 +18,11 @@ public class House extends Location
     private Character character;
 
     private MapLocation[] furniture;
-    Fridge fridge;
+    private Fridge fridge;
+
+    private boolean ovenInUse;
+    private Oven oven;
+    private ToadProduct dish;
 
     private MapLocation flowers[] = new MapLocation[5];
     private MapLocation rings[] = new MapLocation[5];
@@ -24,6 +30,7 @@ public class House extends Location
     {
         super(gm, path);
         this.character = character;
+        oven = new Oven(gm, this, character.getEquipment());
 
         fridge = new Fridge(gm, "res/fridge/fridge.png", character, this, 250, 30);
 
@@ -50,12 +57,8 @@ public class House extends Location
             }
         });
         furniture[1] = new MapLocation(gm,"house_kitchen.png", c * 12, c * 6);
-        furniture[1].setOnClick(new Runnable() {
-            @Override
-            public void run()
-            {
-                System.out.println("kitchen");
-            }
+        furniture[1].setOnClick(() -> {
+           setOvenInUse(true);
         });
         furniture[2] = new MapLocation(gm,"house_fridge.png", c * 16, c * 3);
         furniture[2].setOnClick(new Runnable() {
@@ -87,11 +90,21 @@ public class House extends Location
         this.openFridge = openFridge;
     }
 
+    public void setDish(ToadProduct dish) {
+        this.dish = dish;
+    }
+
+    public void setOvenInUse(boolean ovenInUse) {
+        this.ovenInUse = ovenInUse;
+    }
+
     @Override
     public void update(GameContainer gc, double deltaTime)
     {
         if(openFridge) {
             fridge.update(gc, deltaTime);
+        } else if(ovenInUse) {
+            oven.update(gc, deltaTime);
         } else {
             for (MapLocation m : furniture) {
                 m.isClicked(gc);
@@ -105,9 +118,6 @@ public class House extends Location
         for(MapLocation m : furniture)
         {
             renderer.drawImage(m.getIcon(), (int)m.x, (int)m.y);
-        }
-        if(openFridge) {
-            fridge.render(gc, renderer);
         }
 
         if(character.getEquipment().getFlowerAmount(Flowers.MIXED) > 0) {
@@ -132,5 +142,15 @@ public class House extends Location
             }
         }
 
+        if(dish != null) {
+            dish.render(gc, renderer);
+        }
+
+        if(openFridge) {
+            fridge.render(gc, renderer);
+        }
+        if(ovenInUse) {
+            oven.render(gc, renderer);
+        }
     }
 }
