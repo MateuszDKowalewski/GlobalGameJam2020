@@ -3,20 +3,23 @@ package pl.dobberstudio.game.gui;
 import pl.dobberstudio.engine.GameContainer;
 import pl.dobberstudio.engine.Renderer;
 import pl.dobberstudio.engine.gfx.Image;
+import pl.dobberstudio.game.CurrentLocation;
 import pl.dobberstudio.game.GameManager;
 
 public class Timer
 {
-    private double timeLeft = 1800;
+    private double timeLeft = 300;
     private Image timerB;
     public Timer(GameManager gm, String path)
     {
         timerB = new Image(path);
     }
-    public void update(GameContainer gc, double deltaTime)
+    public void update(GameManager gm, GameContainer gc, double deltaTime)
     {
         if(timeLeft >=0 )
         timeLeft -= deltaTime;
+        else
+            gm.setLocation(CurrentLocation.ENDING_BAD);
     }
     public void render(GameContainer gc, Renderer renderer)
     {
